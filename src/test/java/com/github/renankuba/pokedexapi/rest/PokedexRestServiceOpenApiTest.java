@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,6 +36,8 @@ public class PokedexRestServiceOpenApiTest {
 
     private final String BASE_URL = "/pokedex/pokemons";
 
+    private Pokemon pokemon = new Pokemon(1L, "Bulbassaur", "img");
+
     @BeforeEach
     void init() {
         Resource spec = new ClassPathResource("openapi.yaml");
@@ -43,16 +46,14 @@ public class PokedexRestServiceOpenApiTest {
 
     @Test
     public void testGetPokemonOpenApi() throws Exception {
-        Integer id = 1; 
-        Pokemon p = new Pokemon(1, "Bulbassaur", "img");
-        when(service.findById(id)).thenReturn(p);
+        Long id = 1L; 
+        when(service.findById(id)).thenReturn(Optional.of(pokemon));
         mockMvc.perform(get(BASE_URL + "/" + id)).andExpect(status().isOk());
     }
 
     @Test
     public void testGetAllOpenApi() throws Exception {
-        Pokemon p = new Pokemon(1, "Bulbassaur", "img");
-        when(service.findAll()).thenReturn(List.of(p));
+        when(service.findAll()).thenReturn(List.of(pokemon));
         mockMvc.perform(get(BASE_URL)).andExpect(status().isOk());
     }
 }

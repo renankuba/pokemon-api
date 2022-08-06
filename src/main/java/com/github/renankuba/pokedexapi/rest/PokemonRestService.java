@@ -2,6 +2,7 @@ package com.github.renankuba.pokedexapi.rest;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.renankuba.pokedexapi.exception.PokemonNotFoundException;
 import com.github.renankuba.pokedexapi.model.Pokemon;
 import com.github.renankuba.pokedexapi.service.PokemonService;
 
@@ -20,8 +21,9 @@ public class PokemonRestService {
 	private PokemonService service;
 
     @GetMapping("/{id}")
-    public Pokemon getOne(@PathVariable Integer id){
-        return service.findById(id);
+    public Pokemon getOne(@PathVariable Long id){
+        return service.findById(id)
+            .orElseThrow(() -> new PokemonNotFoundException(id, "/pokedex/pokemons/"+id));
     }
 
     @GetMapping

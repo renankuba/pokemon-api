@@ -1,11 +1,12 @@
 package com.github.renankuba.pokedexapi.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.github.renankuba.pokedexapi.model.Pokemon;
 
 public interface PokemonService {
-    Pokemon findById(Integer id);
+    Optional<Pokemon> findById(Long id);
 
     List<Pokemon> findAll();
 }

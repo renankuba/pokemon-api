@@ -1,23 +1,28 @@
 package com.github.renankuba.pokedexapi.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Pokemon {
-    private Integer id;
+    @Id
+    private Long id;
     private String name;
     private String image;
 
     public Pokemon(){}
 
-    public Pokemon(Integer id, String name, String image) {
+    public Pokemon(Long id, String name, String image) {
         this.id = id;
         this.name = name;
         this.image = image;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
