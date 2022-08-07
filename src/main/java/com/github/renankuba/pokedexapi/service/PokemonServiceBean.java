@@ -23,6 +23,6 @@ public class PokemonServiceBean implements PokemonService{
 
     @Override
     public List<Pokemon> findAll(){
-        return repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        return repository.findAll(Sort.by(Sort.Direction.ASC, "number"));
     }
 }
