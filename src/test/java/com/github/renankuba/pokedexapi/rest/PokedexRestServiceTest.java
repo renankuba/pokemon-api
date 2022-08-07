@@ -50,8 +50,10 @@ public class PokedexRestServiceTest {
 
     @Test
     public void testFindAll() throws Exception {
+        when(service.findById(1L)).thenReturn(Optional.of(new Pokemon(1L, "Bulbassaur", "img")));
         mockMvc.perform(get(BASE_URL)
             .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk());
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$").isArray());
     }
 }

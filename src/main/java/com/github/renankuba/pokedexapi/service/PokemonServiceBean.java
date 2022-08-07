@@ -3,7 +3,6 @@ package com.github.renankuba.pokedexapi.service;
 import com.github.renankuba.pokedexapi.model.Pokemon;
 import com.github.renankuba.pokedexapi.repository.PokemonRepository;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +22,6 @@ public class PokemonServiceBean implements PokemonService{
 
     @Override
     public List<Pokemon> findAll(){
-        return Collections.emptyList();
+        return repository.findAll();
     }
 }
