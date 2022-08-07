@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
 
 @Service
 public class PokemonServiceBean implements PokemonService{
@@ -22,6 +23,6 @@ public class PokemonServiceBean implements PokemonService{
 
     @Override
     public List<Pokemon> findAll(){
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 }
