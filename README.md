@@ -4,12 +4,13 @@ Welcome to Pokemon-API - An Open API for Java-Spring-Docker labs.
 
 ---
 
-| Information | Version | 
+| Information | Version |
 |:------------|:---------:|
 |This API provides Kanto's Pokemons only with number, name and image.| 1.0 |
 
 ---
-## Installation 
+
+## Installation
 
 ### Local build
 
