@@ -21,7 +21,7 @@ services:
         depends_on:
             - pokemon-db
         ports: 
-            - "80:8080"
+            - "8080:8080"
 networks:
     backend-network:
         driver: bridge
