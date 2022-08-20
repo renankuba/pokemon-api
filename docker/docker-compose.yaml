@@ -9,16 +9,13 @@ services:
         networks:
             - backend-network
     pokemon-api:
+        image: renankuba/pokemon-api:1.0
         container_name: pokemon-api
-        image: pokemon-api:1.0
         environment:
             DB_HOST: pokemon-db
             DB_PORT: 5432
             DB_USER: admin
             DB_PASS: admin123
-        build:
-            context: ../
-            dockerfile: Dockerfile
         networks:
             - backend-network
         depends_on:
@@ -28,3 +25,4 @@ services:
 networks:
     backend-network:
         driver: bridge
+        
