@@ -1,10 +1,30 @@
 version: '3.6'
 services: 
-    postgres:
-        image: postgres
+    pokemon-db:
+        image: postgres:12
+        container_name: pokemon-db
         environment: 
             - POSTGRES_USER=admin
             - POSTGRES_PASSWORD=admin123
+        networks:
+            - backend-network
+    pokemon-api:
+        container_name: pokemon-api
+        image: pokemon-api:1.0
+        environment:
+            DB_HOST: pokemon-db
+            DB_PORT: 5432
+            DB_USER: admin
+            DB_PASS: admin123
+        build:
+            context: ../
+            dockerfile: Dockerfile
+        networks:
+            - backend-network
+        depends_on:
+            - pokemon-db
         ports: 
-            - "5432:5432"
-            
+            - "80:8080"
+networks:
+    backend-network:
+        driver: bridge
