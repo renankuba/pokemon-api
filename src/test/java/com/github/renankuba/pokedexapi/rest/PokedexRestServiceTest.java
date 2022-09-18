@@ -4,6 +4,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,11 @@ public class PokedexRestServiceTest {
         when(service.findById(1L)).thenReturn(Optional.of(new Pokemon(1L, "Bulbassaur", "img")));
         mockMvc.perform(get(BASE_URL + "/1")
             .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk());
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.number").isNumber())
+            .andExpect(jsonPath("$.number").value(1))
+            .andExpect(jsonPath("$.name").value("Bulbassaur"))
+            .andExpect(jsonPath("$.image").value("img"));
     }
 
     @Test
@@ -50,10 +55,14 @@ public class PokedexRestServiceTest {
 
     @Test
     public void testFindAll() throws Exception {
-        when(service.findById(1L)).thenReturn(Optional.of(new Pokemon(1L, "Bulbassaur", "img")));
+        when(service.findAll()).thenReturn(List.of(new Pokemon(1L, "Bulbassaur", "img")));
         mockMvc.perform(get(BASE_URL)
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$").isArray());
+            .andExpect(jsonPath("$").isArray())
+            .andExpect(jsonPath("$").isNotEmpty())
+            .andExpect(jsonPath("$.[0].number").isNumber())
+            .andExpect(jsonPath("$.[0].number").value(1))
+            .andExpect(jsonPath("$.[0].name").value("Bulbassaur"));
     }
 }
