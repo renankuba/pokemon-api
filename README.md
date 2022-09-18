@@ -14,7 +14,7 @@ Welcome to Pokemon-API - An Open API for Java-Spring-Docker labs.
 
 ### Local build
 
-In order to run the local version, it is necessary to build the the jar.
+In order to run the local version, it is necessary to build the jar.
 With the command bellow, a .jar file will be created inside target folder.
 
     mvn package
@@ -30,7 +30,7 @@ This step is necessary so we can have an isolated network for the containers and
     docker network create pokemon-net
 
 Before we run the API, we will set up the database, to run within the network that we've just created.
-With command bellow, it will start a container called pokemondb, running postgres 12.
+With command bellow, it will start a container running postgres 12.
 
     docker run -d -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin123 --net=pokemon-net --name=pokemon-db postgres:12
 
@@ -38,3 +38,10 @@ Now we are ready to run the Pokemon-API container that connects to a database.
 To do so, simply execute the following command:
 
     docker run -d -p 80:8080 --net=pokemon-net -e DB_HOST=pokemon-db -e DB_PORT=5432 -e DB_USER=admin -e DB_PASS=admin123 --name=pokemon-api pokemon-api
+
+## Stack
+
+<a href="https://www.java.com/" title="Java"><img src="https://github.com/get-icon/geticon/raw/master/icons/java.svg" alt="Java" width="42px" height="42px"></a>
+<a href="https://spring.io/" title="Spring"><img src="https://github.com/get-icon/geticon/raw/master/icons/spring.svg" alt="Spring" width="42px" height="42px"></a>
+<a href="https://www.postgresql.org/" title="PostgreSQL"><img src="https://github.com/get-icon/geticon/raw/master/icons/postgresql.svg" alt="PostgreSQL" width="42px" height="42px"></a>
+<a href="https://www.docker.com/" title="docker"><img src="https://github.com/get-icon/geticon/raw/master/icons/docker-icon.svg" alt="docker" width="42px" height="42px"></a>
