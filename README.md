@@ -17,7 +17,7 @@ Welcome to Pokemon-API - An Open API for Java-Spring-Docker labs.
 In order to run the local version, it is necessary to build the jar.
 With the command bellow, a .jar file will be created inside target folder.
 
-    mvn package
+    ./mvnw package
 
 To be able to run the API in a container, it is first required to create an image.
 The command bellow will build a image using the provided dockerfile.
@@ -45,3 +45,4 @@ To do so, simply execute the following command:
 <a href="https://spring.io/" title="Spring"><img src="https://github.com/get-icon/geticon/raw/master/icons/spring.svg" alt="Spring" width="42px" height="42px"></a>
 <a href="https://www.postgresql.org/" title="PostgreSQL"><img src="https://github.com/get-icon/geticon/raw/master/icons/postgresql.svg" alt="PostgreSQL" width="42px" height="42px"></a>
 <a href="https://www.docker.com/" title="docker"><img src="https://github.com/get-icon/geticon/raw/master/icons/docker-icon.svg" alt="docker" width="42px" height="42px"></a>
+<a href="https://maven.apache.org/" title="maven"><img src="https://github.com/get-icon/geticon/raw/master/icons/maven.svg" alt="docker" width="42px" height="42px"></a>
