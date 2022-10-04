@@ -58,7 +58,7 @@ public class PokedexRestServiceTest {
 
     @Test
     public void testFindAll() throws Exception {
-        when(service.findAll()).thenReturn(List.of(new Pokemon(1L, "Bulbassaur", "img")));
+        when(service.findAll(0)).thenReturn(List.of(new Pokemon(1L, "Bulbassaur", "img")));
         mockMvc.perform(get(BASE_URL)
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())

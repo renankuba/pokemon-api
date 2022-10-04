@@ -7,6 +7,7 @@ import com.github.renankuba.pokedexapi.model.Pokemon;
 import com.github.renankuba.pokedexapi.service.PokemonService;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,7 +30,7 @@ public class PokemonRestService {
     }
 
     @GetMapping
-    public List<Pokemon> getAll(){
-        return service.findAll();
+    public List<Pokemon> getAll(Optional<Integer> page){
+        return service.findAll(page.orElse(0));
     }
 }

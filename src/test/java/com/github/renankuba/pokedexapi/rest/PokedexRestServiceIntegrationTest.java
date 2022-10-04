@@ -1,7 +1,5 @@
 package com.github.renankuba.pokedexapi.rest;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,22 +26,36 @@ public class PokedexRestServiceIntegrationTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void getAllPokemons() {
-        var response = this.restTemplate.getForEntity("http://localhost:" + port + "/pokedex/pokemons", List.class);
+    public void getAllFirstPage() throws Exception{
+        var response = this.restTemplate.getForEntity("http://localhost:" + port + "/pokedex/pokemons", Pokemon[].class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-        assertThat(response.getBody().size(), equalTo(151));
+        Pokemon[] body = response.getBody();
+        assertThat(body.length, equalTo(50));
+        assertThat(body[0].getNumber(), equalTo(1L));
+        assertThat(body[49].getNumber(), equalTo(50L));
     }
 
     @Test
-    public void getOnePokemon(){
+    public void getAllSecondPage() throws Exception{
+        var response = this.restTemplate.getForEntity("http://localhost:" + port + "/pokedex/pokemons?page=1", Pokemon[].class);
+        assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
+        Pokemon[] body = response.getBody();
+        assertThat(body.length, equalTo(50));
+        assertThat(body[0].getNumber(), equalTo(51L));
+        assertThat(body[49].getNumber(), equalTo(100L));
+    }
+
+    @Test
+    public void getOnePokemon() throws Exception{
         var response = this.restTemplate.getForEntity("http://localhost:" + port + "/pokedex/pokemons/1", Pokemon.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-        assertThat(response.getBody().getNumber(), equalTo(1L));
+        Pokemon body = response.getBody();
+        assertThat(body.getNumber(), equalTo(1L));
     }
 
     @Test
     public void getInexistingPokemon(){
-        var response = this.restTemplate.getForEntity("http://localhost:" + port + "/pokedex/pokemons/999", Pokemon.class);
+        var response = this.restTemplate.getForEntity("http://localhost:" + port + "/pokedex/pokemons/999", String.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.NOT_FOUND));
     }
 }

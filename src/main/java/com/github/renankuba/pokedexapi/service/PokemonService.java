@@ -8,5 +8,5 @@ import com.github.renankuba.pokedexapi.model.Pokemon;
 public interface PokemonService {
     Optional<Pokemon> findById(Long id);
 
-    List<Pokemon> findAll();
+    List<Pokemon> findAll(Integer page);
 }
