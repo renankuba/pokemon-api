@@ -1,7 +1,7 @@
 package com.github.renankuba.pokedexapi.service;
 
 import com.github.renankuba.pokedexapi.model.Pokemon;
-import com.github.renankuba.pokedexapi.repository.PokemonRepository;
+import com.github.renankuba.pokedexapi.repository.PokemonJpaRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +16,7 @@ import org.springframework.data.domain.Sort;
 public class PokemonServiceBean implements PokemonService{
 
     @Autowired
-    private PokemonRepository repository;
+    private PokemonJpaRepository repository;
 
     @Override
     public Optional<Pokemon> findById(Long id) {
