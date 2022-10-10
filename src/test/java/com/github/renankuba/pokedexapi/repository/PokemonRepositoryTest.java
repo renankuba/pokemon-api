@@ -21,7 +21,7 @@ import java.util.List;
 public class PokemonRepositoryTest {
 
     @Autowired
-    private PokemonRepository pokemonRepository;
+    private PokemonJpaRepository pokemonRepository;
 
     @BeforeEach
     public void setUp(){
